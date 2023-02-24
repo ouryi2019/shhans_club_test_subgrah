@@ -1,0 +1,110 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Cards
+    network: goerli
+    source:
+      address: "0xff837c1a2A9b5f1320BfccFa6Aed2CC2E5A61087"
+      abi: Cards
+      startBlock: 400
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Card
+        - Log
+      abis:
+        - name: Cards
+          file: ./abis/Cards.json
+      eventHandlers:
+        - event: Minted(indexed uint256,indexed address,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleMinted
+        - event: CharacterUpdated(indexed address,uint256,uint256,uint256)
+          handler: handleCharacterUpdated
+      file: ./src/cards.ts
+  - kind: ethereum
+    name: Union
+    network: goerli
+    source:
+      address: "0x4F444b11eDa52DE68c3d4d5802aFFbb8a00124D0"
+      abi: Union
+      startBlock: 400
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - UnionMember
+        - Union
+        - Log
+      abis:
+        - name: Union
+          file: ./abis/Union.json
+      eventHandlers:
+        - event: Created(indexed address,uint256,uint256,bytes32,bytes32)
+          handler: handleCreated
+        - event: Joined(indexed address,uint256)
+          handler: handleJoined
+        - event: Exited(indexed address,uint256)
+          handler: handleExited
+        - event: UnionOwnerUpdated(indexed address,uint256,address,address)
+          handler: handleUnionOwnerUpdated
+        - event: Staked(indexed address,uint256)
+          handler: handleStaked
+        - event: Withdrawn(indexed address,uint256)
+          handler: handleWithdrawn
+        - event: Replaced(indexed address,uint256,uint256,uint256)
+          handler: handleReplaced
+        - event: Played(uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handlePlayed
+        - event: Signed(indexed address,uint256,uint256)
+          handler: handleSigned
+        - event: MatchStarted(indexed address)
+          handler: handleMatchStarted
+        - event: Eliminated(indexed address,uint256,uint256[],uint256[])
+          handler: handleEliminated
+      file: ./src/union.ts
+  - kind: ethereum
+    name: Online
+    network: goerli
+    source:
+      address: "0x17Bc84a71689bC5ba74e84D12443b8D5c569146D"
+      abi: Online
+      startBlock: 400
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - OnlineRecord
+        - Log
+      abis:
+        - name: Online
+          file: ./abis/Online.json
+      eventHandlers:
+        - event: Claimed(indexed address,uint256,uint256,uint256[2])
+          handler: handleClaimed
+      file: ./src/online.ts
+  - kind: ethereum
+    name: Box
+    network: goerli
+    source:
+      address: "0xFbfE06d2a415d572b5e210520880416460948B87"
+      abi: Box
+      startBlock: 400
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Log
+      abis:
+        - name: Box
+          file: ./abis/Box.json
+      eventHandlers:
+        - event: Opened(indexed address,uint256,address,uint256)
+          handler: handlerOpend
+      file: ./src/box.ts

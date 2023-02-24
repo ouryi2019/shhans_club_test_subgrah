@@ -1,0 +1,148 @@
+type Log @entity {
+  "操作日志"
+  id: ID!
+  "记录者"
+  account: Bytes!
+  "时间戳"
+  timestamp: BigInt!
+  "日志类型"
+  type: String!
+  param1: String
+  param2: String
+  param3: String
+  address1: Bytes
+  address2: Bytes
+  address3: Bytes
+}
+
+type Card @entity {
+  "nft卡片"
+  id: ID!
+  tokenID: BigInt!
+  position: BigInt!
+  attack: BigInt!
+  defense: BigInt!
+  physical: BigInt!
+  luck: BigInt!
+  stats: BigInt!
+  looks: BigInt!
+  totalPotential: BigInt!
+  version: BigInt!
+}
+
+type CardHistory @entity {
+  "nft卡片快照"
+  id: ID!
+  tokenID: BigInt!
+  position: BigInt!
+  attack: BigInt!
+  defense: BigInt!
+  physical: BigInt!
+  luck: BigInt!
+  stats: BigInt!
+  looks: BigInt!
+  totalPotential: BigInt!
+  version: BigInt!
+}
+
+type Union @entity(immutable: true) {
+  "联盟信息"
+  id: ID!
+  unionIndex: BigInt!
+  account: Bytes!
+  position: BigInt!
+  name: Bytes!
+  data: Bytes!
+  members: [UnionMember!] @derivedFrom(field: "union")
+  cards: [UnionCard!] @derivedFrom(field: "union")
+  signs: [UnionSign!] @derivedFrom(field: "union")
+}
+
+type UnionMember @entity {
+  "联盟成员 id是成员钱包地址"
+  id: ID!
+  account: Bytes!
+  "是否是会长"
+  isLeader: Boolean!
+  union: Union!
+}
+
+type UnionCard @entity {
+  "联盟卡片 id是卡片id"
+  id: ID!
+  card: Card!
+  union: Union!
+}
+
+type UnionSign @entity {
+  "联盟报名参赛记录"
+  id: ID!
+  "联盟赛季"
+  matchIndex: BigInt!
+  account: Bytes!
+  union: Union!
+  timestamp: BigInt!
+}
+
+type MatchStart @entity {
+  "联盟赛季记录 每次开始赛季记录 matchIndex"
+  id: ID!
+  timestamp: BigInt!
+}
+
+type UnionEliminate @entity {
+  "赛季淘汰记录"
+  id: ID!
+  "赛季"
+  season: BigInt!
+  "所有联盟"
+  unions: [Union!]!
+  "通过的联盟"
+  tops: [Union!]!
+}
+
+type UnionMatch @entity {
+  "联盟赛信息"
+  id: ID!
+  "联盟赛第几赛季"
+  season: BigInt!
+  "赛季第几轮比赛"
+  round: BigInt!
+  "记录时间"
+  timestamp: BigInt!
+  "双方unionIndex"
+  union1: Union!
+  union2: Union!
+  "双方得分"
+  union1Score: BigInt!
+  union2Score: BigInt!
+  "双方卡片快照"
+  union1Cards: [CardHistory!]
+  union2Cards: [CardHistory!]
+}
+
+type OnlineRecord @entity {
+  "在线对战记录"
+  id: ID!
+  playIndex: BigInt!
+  gameIndex: BigInt!
+  "参赛时间"
+  timestamp: BigInt!
+  "胜利失败地址"
+  win: Bytes!
+  lose: Bytes!
+  "参赛双方地址"
+  player1: Bytes!
+  player2: Bytes!
+  "参赛双方得分"
+  player1Score: BigInt!
+  player2Score: BigInt!
+  "参赛双方奖励"
+  player1RewardProps: [BigInt!]
+  player1Reward: BigInt
+  player2RewardProps: [BigInt!]
+  player2Reward: BigInt
+  "参赛双方卡片"
+  player1Cards: [CardHistory!]
+  player2Cards: [CardHistory!]
+}
