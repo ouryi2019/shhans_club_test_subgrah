@@ -87,6 +87,8 @@ type UnionSign @entity {
 type MatchStart @entity {
   "联盟赛季记录 每次开始赛季记录 matchIndex"
   id: ID!
+  "交易hash"
+  hash: String!
   timestamp: BigInt!
 }
 

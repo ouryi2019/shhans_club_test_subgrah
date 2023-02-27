@@ -146,6 +146,18 @@ export function handleStaked(event: Staked): void {
 export function handleWithdrawn(event: Withdrawn): void {
   let unionCard = UnionCard.load(event.params.tokenId.toString());
   if (unionCard) {
+    //联盟卸卡日志
+    let log = new Log(
+      event.transaction.hash.toHexString() + "-" + event.logIndex.toString()
+    );
+    log.type = "206";
+    log.timestamp = event.block.timestamp;
+    log.account = event.params.account;
+    log.address1 = event.params.account;
+    log.param1 = unionCard.union;
+    log.param2 = unionCard.card;
+    log.save();
+    //卸卡
     store.remove("UnionCard", unionCard.id);
   }
 }
@@ -157,10 +169,24 @@ export function handleReplaced(event: Replaced): void {
   let newUnionCard = UnionCard.load(event.params.newTokenId.toString());
   let card = Card.load(event.params.newTokenId.toString());
   if (unionMember && oldUnionCard && !newUnionCard && card) {
+    //替换卡片
     newUnionCard = new UnionCard(event.params.newTokenId.toString());
     newUnionCard.card = card.id;
     newUnionCard.union = unionMember.union;
     newUnionCard.save();
+    //日志
+    let log = new Log(
+      event.transaction.hash.toHexString() + "-" + event.logIndex.toString()
+    );
+    log.type = "207";
+    log.timestamp = event.block.timestamp;
+    log.account = event.params.account;
+    log.address1 = event.params.account;
+    log.param1 = unionMember.union;
+    log.param2 = oldUnionCard.card;
+    log.param3 = newUnionCard.card;
+    log.save();
+    //删除老卡片
     store.remove("UnionCard", oldUnionCard.id);
   }
 }
@@ -197,7 +223,7 @@ export function handlePlayed(event: Played): void {
     let union1Cards = events.map<string>((nowEvent, index) => {
       let contract = UnionBody.bind(nowEvent.address);
       let unionIndexM = nowEvent.params.union1.toI32() - 1;
-      //union1的ka
+      //union1的卡
       let data = contract.try_unionTokens(
         BigInt.fromI32(unionIndexM),
         BigInt.fromI32(index)
@@ -211,7 +237,7 @@ export function handlePlayed(event: Played): void {
     let union2Cards = events.map<string>((nowEvent, index) => {
       let contract = UnionBody.bind(nowEvent.address);
       let unionIndexM = nowEvent.params.union2.toI32() - 1;
-      //union1的ka
+      //union1的卡
       let data = contract.try_unionTokens(
         BigInt.fromI32(unionIndexM),
         BigInt.fromI32(index)
@@ -225,6 +251,25 @@ export function handlePlayed(event: Played): void {
     unionMatch.union1Cards = union1Cards;
     unionMatch.union2Cards = union2Cards;
     unionMatch.save();
+    //日志
+    let log1 = new Log(
+      event.transaction.hash.toHexString() + "-" + event.logIndex.toString()
+    );
+    log1.type = "208";
+    log1.timestamp = event.block.timestamp;
+    log1.account = union1.name;
+    log1.param1 = union1.id;
+    log1.address1 = union1.name;
+    log1.save();
+    let log2 = new Log(
+      event.transaction.hash.toHexString() + "-" + event.logIndex.toString()
+    );
+    log2.type = "208";
+    log2.timestamp = event.block.timestamp;
+    log2.account = union2.name;
+    log2.param1 = union2.id;
+    log2.address1 = union2.name;
+    log2.save();
   }
 }
 
@@ -259,6 +304,7 @@ export function handleMatchStarted(event: MatchStarted): void {
     event.transaction.hash.toHexString() + "-" + event.logIndex.toString()
   );
   matchStart.timestamp = event.block.timestamp;
+  matchStart.hash = event.transaction.hash.toHexString();
   matchStart.save();
 }
 
