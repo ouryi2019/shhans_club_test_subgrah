@@ -116,6 +116,17 @@ export function handleUnionOwnerUpdated(event: UnionOwnerUpdated): void {
     newUnionMember.isLeader = true;
     oldUnionMember.save();
     newUnionMember.save();
+    //日志
+    let log = new Log(
+      event.transaction.hash.toHexString() + "-" + event.logIndex.toString()
+    );
+    log.type = "209";
+    log.timestamp = event.block.timestamp;
+    log.account = event.params.account;
+    log.param1 = event.params.unionIndex.toString();
+    log.address1 = event.params.previousValue;
+    log.address2 = event.params.newValue;
+    log.save();
   }
 }
 

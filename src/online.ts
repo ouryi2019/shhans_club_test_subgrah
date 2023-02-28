@@ -58,7 +58,7 @@ export function handleClaimed(event: Claimed): void {
           });
         }
         onlineRecord.save();
-        //日志记录
+        //对战日志记录
         let logIns = new Log(
           event.transaction.hash.toHexString() + "-" + event.logIndex.toString()
         );
@@ -92,7 +92,7 @@ export function handleClaimed(event: Claimed): void {
         onlineRecord.player2RewardProps = event.params.rewardProps;
       }
       onlineRecord.save();
-      //日志记录
+      //对战日志记录
       let logIns = new Log(
         event.transaction.hash.toHexString() + "-" + event.logIndex.toString()
       );
@@ -105,4 +105,15 @@ export function handleClaimed(event: Claimed): void {
       logIns.save();
     }
   }
+  //领取日志记录
+  let log = new Log(
+    event.transaction.hash.toHexString() + "-" + event.logIndex.toString()
+  );
+  log.type = "104";
+  log.timestamp = event.block.timestamp;
+  log.account = event.params.account;
+  log.param1 = event.params.reward.toString();
+  log.param2 = event.params.rewardProps[0].toString();
+  log.param3 = event.params.rewardProps[1].toString();
+  log.save();
 }
