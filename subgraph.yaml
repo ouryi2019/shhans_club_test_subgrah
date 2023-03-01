@@ -8,7 +8,7 @@ dataSources:
     source:
       address: "0xBBb7270a7D928a87A7F2bd6e4A4C688b0193F305"
       abi: Cards
-      startBlock: 400
+      startBlock: 3000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -31,7 +31,7 @@ dataSources:
     source:
       address: "0xeAD720a3D1b24094A8785a451f093DaDbE2296A8"
       abi: Union
-      startBlock: 400
+      startBlock: 3000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -73,7 +73,7 @@ dataSources:
     source:
       address: "0xfdC0bcb1510eD384E153D6803EE2e44F9b46ed75"
       abi: Online
-      startBlock: 400
+      startBlock: 3000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -94,7 +94,7 @@ dataSources:
     source:
       address: "0xB6a12193e2323942FD12DeD01c54c5e3d0BC1BB4"
       abi: Box
-      startBlock: 400
+      startBlock: 3000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
