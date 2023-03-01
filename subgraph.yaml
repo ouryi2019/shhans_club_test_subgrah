@@ -6,7 +6,7 @@ dataSources:
     name: Cards
     network: goerli
     source:
-      address: "0xff837c1a2A9b5f1320BfccFa6Aed2CC2E5A61087"
+      address: "0xBBb7270a7D928a87A7F2bd6e4A4C688b0193F305"
       abi: Cards
       startBlock: 400
     mapping:
@@ -29,7 +29,7 @@ dataSources:
     name: Union
     network: goerli
     source:
-      address: "0x4F444b11eDa52DE68c3d4d5802aFFbb8a00124D0"
+      address: "0xeAD720a3D1b24094A8785a451f093DaDbE2296A8"
       abi: Union
       startBlock: 400
     mapping:
@@ -71,7 +71,7 @@ dataSources:
     name: Online
     network: goerli
     source:
-      address: "0x17Bc84a71689bC5ba74e84D12443b8D5c569146D"
+      address: "0xfdC0bcb1510eD384E153D6803EE2e44F9b46ed75"
       abi: Online
       startBlock: 400
     mapping:
@@ -92,7 +92,7 @@ dataSources:
     name: Box
     network: goerli
     source:
-      address: "0xFbfE06d2a415d572b5e210520880416460948B87"
+      address: "0xB6a12193e2323942FD12DeD01c54c5e3d0BC1BB4"
       abi: Box
       startBlock: 400
     mapping:
