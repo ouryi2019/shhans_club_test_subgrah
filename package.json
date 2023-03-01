@@ -5,9 +5,9 @@
     "codegen": "graph codegen",
     "build": "graph build",
     "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ shhans-test",
-    "create-local": "graph create --node http://localhost:8020/ shhans-test",
-    "remove-local": "graph remove --node http://localhost:8020/ shhans-test",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 shhans-test"
+    "create-local": "graph create --node http://149.28.199.156:8020/ shhans-test",
+    "remove-local": "graph remove --node http://149.28.199.156:8020/ shhans-test",
+    "deploy-local": "graph deploy --node http://149.28.199.156:8020/ --ipfs http://149.28.199.156:5001 shhans-test"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.32.0",

@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum
     name: Cards
-    network: goerli
+    network: mainnet
     source:
-      address: "0xBBb7270a7D928a87A7F2bd6e4A4C688b0193F305"
+      address: "0xfAD8a8cdF0898c97dd46B0599f44CE44A2E64C2d"
       abi: Cards
-      startBlock: 400
+      startBlock: 32566000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -27,11 +27,11 @@ dataSources:
       file: ./src/cards.ts
   - kind: ethereum
     name: Union
-    network: goerli
+    network: mainnet
     source:
-      address: "0xeAD720a3D1b24094A8785a451f093DaDbE2296A8"
+      address: "0x40f495d43859f0A56cbEC92dC58C18e1118821DA"
       abi: Union
-      startBlock: 400
+      startBlock: 32566000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -69,11 +69,11 @@ dataSources:
       file: ./src/union.ts
   - kind: ethereum
     name: Online
-    network: goerli
+    network: mainnet
     source:
-      address: "0xfdC0bcb1510eD384E153D6803EE2e44F9b46ed75"
+      address: "0x5dca7238DE50EE8920B3f1672215409a94CBBDdA"
       abi: Online
-      startBlock: 400
+      startBlock: 32566000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -90,11 +90,11 @@ dataSources:
       file: ./src/online.ts
   - kind: ethereum
     name: Box
-    network: goerli
+    network: mainnet
     source:
-      address: "0xB6a12193e2323942FD12DeD01c54c5e3d0BC1BB4"
+      address: "0x66535bD7eB6fB98443B7423e0170830A916cd97b"
       abi: Box
-      startBlock: 400
+      startBlock: 32566000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
