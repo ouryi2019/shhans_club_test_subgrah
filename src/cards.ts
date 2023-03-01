@@ -13,7 +13,7 @@ export function handleMinted(event: Minted): void {
   card.luck = event.params.luck;
   card.looks = event.params.looks;
   card.totalPotential = event.params.totalPotential;
-  card.version = new BigInt(0);
+  card.version = BigInt.fromI32(0);
   let contract = Cards.bind(event.address);
   let result = contract.try_calculatePower(event.params.tokenId);
   if (!result.reverted) {
@@ -34,7 +34,7 @@ export function handleCharacterUpdated(event: CharacterUpdated): void {
       card.physical = result.value.value2;
       card.luck = result.value.value3;
       card.stats = result.value.value4;
-      card.version = card.version.plus(new BigInt(1));
+      card.version = card.version.plus(BigInt.fromI32(1));
       card.save();
     }
   }
