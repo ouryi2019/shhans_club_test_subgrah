@@ -1,6 +1,6 @@
 import { BigInt } from "@graphprotocol/graph-ts";
 import { Minted, Cards, CharacterUpdated } from "../generated/Cards/Cards";
-import { Card, CardHistory } from "../generated/schema";
+import { Card, CardHistory, Log } from "../generated/schema";
 
 //nft创建
 export function handleMinted(event: Minted): void {
@@ -36,6 +36,17 @@ export function handleCharacterUpdated(event: CharacterUpdated): void {
       card.stats = result.value.value4;
       card.version = card.version.plus(BigInt.fromI32(1));
       card.save();
+      //使用道具日志
+      let log = new Log(
+        event.transaction.hash.toHexString() + "-" + event.logIndex.toString()
+      );
+      log.type = "105";
+      log.timestamp = event.block.timestamp;
+      log.account = event.params.account;
+      log.param1 = event.params.tokenId.toString();
+      log.param2 = event.params.prop.toString();
+      log.param3 = event.params.amount.toString();
+      log.save();
     }
   }
 }
