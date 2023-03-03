@@ -657,6 +657,55 @@
   {
     "inputs": [
       {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "userPlayPower",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "buff",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "power",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "attack",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "defense",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "physical",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "luck",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "address",
         "name": "",
         "type": "address"
@@ -689,34 +738,41 @@
     "name": "users",
     "outputs": [
       {
-        "internalType": "uint256",
-        "name": "buff",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "buff",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "power",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "attack",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "defense",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "physical",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "luck",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct Online.UserPower",
         "name": "power",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "attack",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "defense",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "physical",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "luck",
-        "type": "uint256"
+        "type": "tuple"
       },
       {
         "internalType": "uint256",
