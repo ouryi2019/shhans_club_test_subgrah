@@ -6,9 +6,9 @@ dataSources:
     name: Cards
     network: goerli
     source:
-      address: "0xBBb7270a7D928a87A7F2bd6e4A4C688b0193F305"
+      address: "0x375b1727baC7719D4317A5164073363fDCafB895"
       abi: Cards
-      startBlock: 3000
+      startBlock: 5000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -29,9 +29,9 @@ dataSources:
     name: Union
     network: goerli
     source:
-      address: "0xeAD720a3D1b24094A8785a451f093DaDbE2296A8"
+      address: "0xA3aeb4820Fe733a2D346e7E71f2b025dd44DCE29"
       abi: Union
-      startBlock: 3000
+      startBlock: 5000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -71,9 +71,9 @@ dataSources:
     name: Online
     network: goerli
     source:
-      address: "0xfdC0bcb1510eD384E153D6803EE2e44F9b46ed75"
+      address: "0x50406D59466f3cdD26353278fEBbB75db738c46e"
       abi: Online
-      startBlock: 3000
+      startBlock: 5000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -92,9 +92,9 @@ dataSources:
     name: Box
     network: goerli
     source:
-      address: "0xB6a12193e2323942FD12DeD01c54c5e3d0BC1BB4"
+      address: "0x069135FC0865D6eBe7e1b9C1AF1Dde83Ae6CCC7A"
       abi: Box
-      startBlock: 3000
+      startBlock: 5000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
