@@ -121,6 +121,19 @@ type UnionMatch @entity {
   "双方卡片快照"
   union1Cards: [CardHistory!]
   union2Cards: [CardHistory!]
+  "双方属性"
+  union1attack: BigInt!
+  union2attack: BigInt!
+  union1defense: BigInt!
+  union2defense: BigInt!
+  union1physical: BigInt!
+  union2physical: BigInt!
+  union1luck: BigInt!
+  union2luck: BigInt!
+  union1power: BigInt!
+  union2power: BigInt!
+  union1buff: BigInt!
+  union2buff: BigInt!
 }
 
 type OnlineRecord @entity {

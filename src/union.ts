@@ -217,7 +217,25 @@ export function handlePlayed(event: Played): void {
   //获取联盟卡片快照
   let union1 = Union.load(event.params.union1.toString());
   let union2 = Union.load(event.params.union2.toString());
-  if (union1 && union2) {
+  //获取联盟信息
+  let unionContract = UnionBody.bind(event.address);
+  let union1Power = unionContract.try_unions(event.params.union1);
+  let union2Power = unionContract.try_unions(event.params.union2);
+  if (union1 && union2 && !union1Power.reverted && !union2Power.reverted) {
+    //联盟属性添加
+    unionMatch.union1attack = union1Power.value.value5.attack;
+    unionMatch.union2attack = union2Power.value.value5.attack;
+    unionMatch.union1defense = union1Power.value.value5.defense;
+    unionMatch.union2defense = union2Power.value.value5.defense;
+    unionMatch.union1physical = union1Power.value.value5.physical;
+    unionMatch.union2physical = union2Power.value.value5.physical;
+    unionMatch.union1luck = union1Power.value.value5.luck;
+    unionMatch.union2luck = union2Power.value.value5.luck;
+    unionMatch.union1power = union1Power.value.value5.power;
+    unionMatch.union2power = union2Power.value.value5.power;
+    unionMatch.union1buff = union1Power.value.value5.buff;
+    unionMatch.union2buff = union2Power.value.value5.buff;
+    //cards添加
     let events = [
       event,
       event,
